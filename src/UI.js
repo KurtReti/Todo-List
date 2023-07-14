@@ -1,5 +1,9 @@
 import { removeItem } from './TodoItemController'
-import { listOfProjects, setCurrentProject } from './ProjectController'
+import {
+  currentProject,
+  listOfProjects,
+  setCurrentProject
+} from './ProjectController'
 
 const itemContainer = document.querySelector('.content-container')
 const projectContainer = document.querySelector('.list-of-projects')
@@ -37,10 +41,31 @@ function ShowProjects (Projects) {
     projectDiv.appendChild(projectTitle)
 
     projectDiv.addEventListener('click', setCurrentProject)
+    projectDiv.addEventListener('click', function () {
+      showTasksForCurrentProject(currentProject)
+    })
+    projectDiv.addEventListener('click', setActive)
   }
 }
 
+function setActive (e) {
+  const active = document.querySelectorAll('.active')
+  active.forEach((project) => {
+    project.classList.remove('active')
+  })
+
+  e.currentTarget.classList.add('active')
+}
 ShowProjects(listOfProjects)
+
+function updateProjects () {
+  const createProject = document.querySelector('.project-form')
+  createProject.addEventListener('click', function () {
+    ShowProjects(listOfProjects)
+  })
+}
+
+updateProjects()
 
 function scrollOnAdd () {
   itemContainer.scrollTop = itemContainer.scrollHeight
