@@ -35,6 +35,7 @@
 
 /* Sidebar styling */
 .sidebar {
+  position: relative;
   float: left;
   width: 200px;
   min-width: 200px;
@@ -63,8 +64,8 @@
 
 .new-item{
     position: absolute;
-    top: 90%;
-    left: 5%;
+    left: 37%;
+    bottom: 5%;
     width: 50px;
     height: 50px;
     background-color: var(--accent-primary);
@@ -72,12 +73,28 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    user-select: none;
+
 }
+
+.new-item:hover{
+  background-color: #294b78;
+  transition: background-color 100ms ease-in-out;
+
+}
+
+.new-item:active{
+  scale: 1.05;
+  transition: scale 50ms ease-in-out;
+}
+
 
 .new-item-icon{
     font-size: 40px;
     color: white;
 }
+
+
 
 .logo-container{
     display: flex;
@@ -99,11 +116,11 @@
 }
 
 /* Content area styling */
-.content-container {
+.content-container {  
   float: left;
   width: 100%;
   height: 100%;
-  overflow: scroll;
+  overflow: auto;
   background-color: var(--bg-secondary);
   display: flex;
   flex-direction: column;
@@ -116,6 +133,7 @@
 /* Item Styling */
 .item {
   display: flex;
+  align-items: center;
   flex-shrink: 0;
   width: 80%;
   height: 35px;
@@ -123,6 +141,7 @@
   border-radius: 5px;
   background-color: var(--accent-primary);
   color: white;
+  gap: 5px;
 }
 
 .item-form {
@@ -141,6 +160,8 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    border: 1px solid var(--bg-secondary);
+    border-radius: 5px;
 }
 
 
@@ -192,7 +213,35 @@ cursor: pointer;
     cursor: pointer;
 }
 
+.close-item-button{
+  border: none;
+  background: none;
+  color: white;
+  font-size: 10px;
+  border: 1px solid white;
+  border-radius: 100%;
+  height: 20px;
+  width: 20px;
+  
+}
 
+.close-item-button:hover{
+cursor: pointer;
+background-color: white;
+color: var(--accent-primary);
+transition: background-color 100ms ease-in-out;
+}
+
+.list-of-projects{
+  height: 80%;
+  width: 100%;
+  overflow: auto;
+}
+
+.project:hover{
+  color: #294b78;
+  cursor: pointer;
+}
 /* Footer Styling */
 /* .footer {
   height: 60px;

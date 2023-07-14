@@ -1,5 +1,8 @@
+import { removeItem } from './TodoItemController'
+import { listOfProjects, setCurrentProject } from './ProjectController'
 
 const itemContainer = document.querySelector('.content-container')
+const projectContainer = document.querySelector('.list-of-projects')
 
 function showTasksForCurrentProject (Project) {
   itemContainer.innerHTML = ''
@@ -12,11 +15,35 @@ function showTasksForCurrentProject (Project) {
     const itemTitle = document.createTextNode(Project.list[i].title)
     itemDiv.appendChild(itemTitle)
 
+    const closeItem = document.createElement('button')
+    closeItem.innerHTML = 'x'
+    closeItem.classList.add('close-item-button')
+    itemDiv.appendChild(closeItem)
+    closeItem.addEventListener('click', removeItem)
+
     console.log(itemDiv.getAttribute('data-item'))
   }
 }
 
+function ShowProjects (Projects) {
+  projectContainer.innerHTML = ''
+  for (let i = 0; i < Projects.length; i++) {
+    const projectDiv = document.createElement('div')
+    projectDiv.classList.add('project')
+    projectContainer.appendChild(projectDiv)
+    projectDiv.setAttribute('data-item', i)
+
+    const projectTitle = document.createTextNode(Projects[i].title)
+    projectDiv.appendChild(projectTitle)
+
+    projectDiv.addEventListener('click', setCurrentProject)
+  }
+}
+
+ShowProjects(listOfProjects)
+
 function scrollOnAdd () {
   itemContainer.scrollTop = itemContainer.scrollHeight
 }
-export { scrollOnAdd, showTasksForCurrentProject }
+
+export { scrollOnAdd, showTasksForCurrentProject, itemContainer }

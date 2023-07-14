@@ -1,9 +1,6 @@
-import { addToProject } from './ProjectController'
+import { addToProject, currentProject } from './ProjectController'
 import TodoItem from './TodoItem'
-import Project from './Project'
 import { showTasksForCurrentProject, scrollOnAdd } from './UI'
-
-const project1 = new Project('Daily tasks', [])
 
 function eventListeners () {
   const newItem = document.querySelector('.new-item')
@@ -32,6 +29,7 @@ function closeItemForm () {
 function newItems (Project) {
   const itemForm = document.querySelector('.item-form')
   itemForm.classList.remove('hidden')
+  console.log(currentProject)
 }
 
 function addItem () {
@@ -45,14 +43,17 @@ function addItem () {
 
   const item = new TodoItem(itemTitle, itemDescription, itemDueDate)
 
-  addToProject(item, project1)
-  console.log(project1)
+  addToProject(item, currentProject)
+  console.log(currentProject)
   closeItemForm()
-  showTasksForCurrentProject(project1)
+  showTasksForCurrentProject(currentProject)
   scrollOnAdd()
 }
 
-export { eventListeners }
-// function newItem () {
-//   alert('hi')
-// }
+function removeItem (e) {
+  const index = e.currentTarget.parentNode.getAttribute('data-item')
+  currentProject.list.splice(index, 1)
+  showTasksForCurrentProject(currentProject)
+}
+
+export { eventListeners, removeItem }
