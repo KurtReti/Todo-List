@@ -144,6 +144,8 @@
   background-color: var(--accent-primary);
   color: white;
   gap: 5px;
+  transition: height 200ms ease-in-out;
+  position: relative;
 }
 
 /* Item form styling */
@@ -226,7 +228,10 @@ cursor: pointer;
   border-radius: 100%;
   height: 20px;
   width: 20px;
-  
+  position: absolute; 
+  top: 10%;
+  right: 5%;
+
 }
 
 .close-item-button:hover{
@@ -335,6 +340,10 @@ cursor: pointer;
   color: var(--accent-secondary)
 }
 
+.expanded{
+  height: 200px;
+  transition: height 200ms ease-in-out;
+}
 /* Footer Styling */
 /* .footer {
   height: 60px;
